@@ -58,4 +58,14 @@ function getColor(user) {
     return colors[user] || "#16a085";  // default color
 }
 
-document.addEventListener('DOMContentLoaded', renderRooms);
+document.addEventListener('DOMContentLoaded', () => {
+    renderRooms();
+    // Rebinding toggle buttons after rooms are rendered
+    const toggleButtons = document.querySelectorAll('.toggle-slots');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const roomId = e.target.closest('.room').id;
+            toggleSlotDisplay(roomId);
+        });
+    });
+});
